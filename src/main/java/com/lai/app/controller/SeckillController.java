@@ -19,7 +19,7 @@ import java.util.Date;
 import java.util.List;
 
 @Controller // @Service @Componet
-@RequestMapping("/seckill") // url:/模块/资源/{id}/细分 /seckill/list
+@RequestMapping(value = "/seckill") // url:/模块/资源/{id}/细分 /seckill/list
 public class SeckillController {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
