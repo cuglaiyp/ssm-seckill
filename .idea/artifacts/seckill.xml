@@ -37,6 +37,10 @@
           <element id="library" level="project" name="Maven: org.slf4j:slf4j-simple:1.7.25" />
           <element id="library" level="project" name="Maven: org.springframework:spring-test:4.3.25.RELEASE" />
           <element id="library" level="project" name="Maven: javax.servlet:jstl:1.2" />
+          <element id="library" level="project" name="Maven: com.dyuproject.protostuff:protostuff-core:1.0.8" />
+          <element id="library" level="project" name="Maven: com.dyuproject.protostuff:protostuff-api:1.0.8" />
+          <element id="library" level="project" name="Maven: com.dyuproject.protostuff:protostuff-runtime:1.0.8" />
+          <element id="library" level="project" name="Maven: com.dyuproject.protostuff:protostuff-collectionschema:1.0.8" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="ssm-seckill/web/Web" />
