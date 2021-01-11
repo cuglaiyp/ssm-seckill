@@ -45,6 +45,19 @@ public class SeckillServiceImpl implements SeckillService {
         return seckillDao.queryBySeckillId(seckillId);
     }
 
+
+    /**
+     * 因为内部方法是不走AOP的，所以直接用exportSeckillUrl调用这个方法不行。
+     * 解决方法：将这个方法放到redisDao里面去
+     * @param seckillId
+     * @return
+     */
+/*    @Cacheable(value = "simpleCache", key = "#seckillId")
+    public Seckill getSeckill(long seckillId) {
+        System.out.println("无缓存");
+        return seckillDao.queryBySeckillId(seckillId);
+    }*/
+
     /**
      * 暴露秒杀链接
      *
@@ -57,6 +70,16 @@ public class SeckillServiceImpl implements SeckillService {
         // 1.访问redis
         Seckill seckill = redisDao.getSeckill(seckillId);
         if (seckill == null) {
+            return Exposer.builder()
+                    .exposed(false)
+                    .seckillId(seckillId)
+                    .build();
+        }
+
+
+
+/*        Seckill seckill = redisDao.getSeckill(seckillId);
+        if (seckill == null) {
             // 2. 访问数据库
             seckill = seckillDao.queryBySeckillId(seckillId);
             if (seckill == null) {
@@ -68,7 +91,7 @@ public class SeckillServiceImpl implements SeckillService {
                 // 3. 放入redis
                 redisDao.putSeckill(seckill);
             }
-        }
+        }*/
 
         Date startTime = seckill.getStartTime();
         Date endTime = seckill.getEndTime();
@@ -96,6 +119,7 @@ public class SeckillServiceImpl implements SeckillService {
 
     /**
      * 秒杀方法
+     *
      * @param seckillId
      * @param userPhone
      * @param md5

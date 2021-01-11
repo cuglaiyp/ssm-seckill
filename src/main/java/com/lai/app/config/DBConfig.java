@@ -111,13 +111,13 @@ public class DBConfig {
      * 建议换成@MapperScan
      * @return
      */
-/*    @Bean
+   /*@Bean
     public MapperScannerConfigurer mapperScannerConfigurer(){
         MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();
         mapperScannerConfigurer.setSqlSessionFactoryBeanName("sqlSessionFactoryBean");
         mapperScannerConfigurer.setBasePackage("com.lai.app.dao");
         return mapperScannerConfigurer;
-    }*/
+    } */
     /**
      * 事务管理器
      * @param dataSource

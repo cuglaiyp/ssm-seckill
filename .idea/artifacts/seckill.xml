@@ -15,7 +15,6 @@
           <element id="library" level="project" name="Maven: commons-logging:commons-logging:1.2" />
           <element id="library" level="project" name="Maven: org.springframework:spring-expression:4.3.25.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-web:4.3.25.RELEASE" />
-          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.9.10" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.9.10" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.9.10" />
           <element id="library" level="project" name="Maven: org.mybatis:mybatis:3.4.6" />
@@ -41,9 +40,11 @@
           <element id="library" level="project" name="Maven: com.dyuproject.protostuff:protostuff-api:1.0.8" />
           <element id="library" level="project" name="Maven: com.dyuproject.protostuff:protostuff-runtime:1.0.8" />
           <element id="library" level="project" name="Maven: com.dyuproject.protostuff:protostuff-collectionschema:1.0.8" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.9.10" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="ssm-seckill/web/Web" />
+      <element id="javaee-facet-resources" facet="ssm-seckill/web/Web2" />
     </root>
   </artifact>
 </component>

@@ -1,22 +1,23 @@
 package com.lai.app.dao.cache;
 
-import com.dyuproject.protostuff.LinkedBuffer;
-import com.dyuproject.protostuff.ProtostuffIOUtil;
-import com.dyuproject.protostuff.runtime.RuntimeSchema;
+import com.lai.app.dao.SeckillDao;
 import com.lai.app.entity.Seckill;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
-import redis.clients.jedis.Jedis;
-import redis.clients.jedis.JedisPool;
 
 
 @Repository
 public class RedisDao {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    // 用来序列化的规则
+
+    @Autowired
+    private SeckillDao seckillDao;
+
+/*    // 用来序列化的规则
     private RuntimeSchema<Seckill> schema = RuntimeSchema.createFrom(Seckill.class);
 
     @Autowired
@@ -62,5 +63,13 @@ public class RedisDao {
             logger.error(e.getMessage(), e);
         }
         return null;
+    }*/
+
+
+    // 注意key的El表达式，是将long转换成String
+    @Cacheable(value = "simpleCache", /*key = "T(String).valueOf(#seckillId)"*/ key = "#seckillId")
+    public Seckill getSeckill(long seckillId) {
+        System.out.println("无缓存");
+        return seckillDao.queryBySeckillId(seckillId);
     }
 }
