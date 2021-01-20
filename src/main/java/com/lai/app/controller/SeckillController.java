@@ -1,5 +1,6 @@
 package com.lai.app.controller;
 
+import com.lai.app.config.SpringConfig;
 import com.lai.app.dto.Exposer;
 import com.lai.app.dto.SeckillExecution;
 import com.lai.app.dto.SeckillResult;
@@ -7,10 +8,13 @@ import com.lai.app.entity.Seckill;
 import com.lai.app.enums.SeckillStateEnum;
 import com.lai.app.exception.RepeatKillException;
 import com.lai.app.exception.SeckillCloseException;
+import com.lai.app.mq.MqReceiver;
+import com.lai.app.mq.MqSender;
 import com.lai.app.service.SeckillService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -27,11 +31,15 @@ public class SeckillController {
     @Autowired
     private SeckillService seckillService;
 
+    @Autowired
+    private MqSender mqSender;
+
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(Model model) {
         // 获取列表页
         List<Seckill> list = seckillService.getSeckillList();
         model.addAttribute("list", list);
+        mqSender.sendMessage();
         // list.jsp + model = ModelAndView
         return "list";// WEB-INF/jsp/"list".jsp
     }
